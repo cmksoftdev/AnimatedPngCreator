@@ -1,7 +1,7 @@
 # AnimatedPngCreator
 Creates animated PNG out ouf a sequence of Images.
 
-[Get the package on NuGet]: https://www.nuget.org/packages/AnimatedPngCreator/
+[Get the package on NuGet](https://www.nuget.org/packages/AnimatedPngCreator/)
 
 Dispose the creator to end the creating process. On disposing the count of images will be written to the header.
 
