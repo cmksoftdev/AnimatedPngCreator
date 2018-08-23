@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>CMK Software</authors>
+    <owners>Chris M. K.</owners>
+    <iconUrl>http://cmk.bplaced.net/pictures/cmk.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Creates animated PNG out ouf a sequence of Images.</description>
+    <releaseNotes>RC</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>APNG Creator</tags>
+  </metadata>
+</package>
