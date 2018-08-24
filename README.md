@@ -23,14 +23,14 @@ namespace ApngTest
             Image image2 = Image.FromFile("filename2.jpg");
             Image image3 = Image.FromFile("filename3.png");
 
-            short frameDalay = 1000 / 5; //5 frames per second
+            short frameDelay = 1000 / 5; //5 frames per second
             using (FileStream outputFile = File.Create("animated.png"))
             {
                 using (var apngCreator = new AnimatedPngCreator(outputFile, image1.Width, image1.Height))
                 {
-                    apngCreator.WriteFrame(image1, frameDalay);
-                    apngCreator.WriteFrame(image2, frameDalay);
-                    apngCreator.WriteFrame(image3, frameDalay);
+                    apngCreator.WriteFrame(image1, frameDelay);
+                    apngCreator.WriteFrame(image2, frameDelay);
+                    apngCreator.WriteFrame(image3, frameDelay);
                 }
             }
         }
@@ -57,14 +57,14 @@ namespace ApngTest
                 Image.FromFile("filename3.png")
             };
 
-            short frameDalay = 1000 / 5; //5 frames per second
+            short frameDelay = 1000 / 5; //5 frames per second
             using (FileStream outputFile = File.Create("animated.png"))
             {
                 using (var apngCreator = new AnimatedPngCreator(outputFile, images[0].Width, images[0].Height))
                 {
                     foreach(var image in images)
                     {
-                        apngCreator.WriteFrame(image, frameDalay);
+                        apngCreator.WriteFrame(image, frameDelay);
                     }
                 }
             }
