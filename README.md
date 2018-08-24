@@ -60,7 +60,7 @@ namespace ApngTest
             short frameDalay = 1000 / 5; //5 frames per second
             using (FileStream outputFile = File.Create("animated.png"))
             {
-                using (var apngCreator = new AnimatedPngCreator(outputFile, images[0].Width, images[0].Width))
+                using (var apngCreator = new AnimatedPngCreator(outputFile, images[0].Width, images[0].Height))
                 {
                     foreach(var image in images)
                     {
