@@ -8,7 +8,7 @@ namespace CMK
     {
         public class Config
         {
-            public bool FilterUnchangedPixels { get; set; }
+            public bool? FilterUnchangedPixels { get; set; }
         }
 
         private readonly Creator creator;
@@ -24,7 +24,7 @@ namespace CMK
 
         private void init()
         {
-            if (config.FilterUnchangedPixels)
+            if (config.FilterUnchangedPixels == true)
                 changeAnalyser = new ImageChangeAnalyser();
         }
 
@@ -36,7 +36,7 @@ namespace CMK
 
         public void WriteFrame(Image image, short frameDalay, int offsetX = 0, int offsetY = 0)
         {
-            var img = config.FilterUnchangedPixels ?
+            var img = config.FilterUnchangedPixels == true ?
                 changeAnalyser.BlackoutImage(image) : image;
             creator.WriteFrame(img, frameDalay, offsetX, offsetY);
         }
