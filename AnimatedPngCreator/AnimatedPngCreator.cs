@@ -20,6 +20,7 @@ namespace CMK
         {
             creator = new Creator(stream,x,y,defaultDelay,repeat);
             config = new Config { FilterUnchangedPixels = true };
+            init();
         }
 
         private void init()
