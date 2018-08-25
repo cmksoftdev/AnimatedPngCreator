@@ -1,19 +1,14 @@
-﻿using CMK;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AnimatedPngCreator
+namespace CMK
 {
     public class AnimatedPngCreator : IDisposable
     {
         public class Config
         {
-            public bool FilterUnchanchedPixels { get; set; }
+            public bool FilterUnchangedPixels { get; set; }
         }
 
         private readonly Creator creator;
@@ -24,12 +19,12 @@ namespace AnimatedPngCreator
         public AnimatedPngCreator(Stream stream, int x, int y, int defaultDelay = 500, int repeat = 0)
         {
             creator = new Creator(stream,x,y,defaultDelay,repeat);
-            config = new Config { FilterUnchanchedPixels = true };
+            config = new Config { FilterUnchangedPixels = true };
         }
 
         private void init()
         {
-            if (config.FilterUnchanchedPixels)
+            if (config.FilterUnchangedPixels)
                 changeAnalyser = new ImageChangeAnalyser();
         }
 
@@ -41,7 +36,7 @@ namespace AnimatedPngCreator
 
         public void WriteFrame(Image image, short frameDalay, int offsetX = 0, int offsetY = 0)
         {
-            var img = config.FilterUnchanchedPixels ?
+            var img = config.FilterUnchangedPixels ?
                 changeAnalyser.BlackoutImage(image) : image;
             creator.WriteFrame(img, frameDalay, offsetX, offsetY);
         }

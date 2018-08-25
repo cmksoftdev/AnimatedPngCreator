@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace AnimatedPngCreator
+namespace CMK
 {
     public class ImageChangeAnalyser
     {
