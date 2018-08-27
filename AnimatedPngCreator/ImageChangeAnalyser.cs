@@ -2,7 +2,7 @@
 
 namespace CMK
 {
-    public class ImageChangeAnalyser
+    internal class ImageChangeAnalyser
     {
         private Bitmap oldImage = null;
 
