@@ -5,6 +5,8 @@ Creates animated PNG out ouf a sequence of Images.
 
 Dispose the creator to end the creating process. On disposing the count of images will be written to the header.
 
+27.8.2018  Filter added to detect unchanged pixels, console app added 
+
 Example 1:
 
 ```csharp
