@@ -35,11 +35,11 @@ namespace CMK
             this.config = config;
         }
 
-        public void WriteFrame(Image image, short frameDalay, int offsetX = 0, int offsetY = 0)
+        public void WriteFrame(Image image, short frameDelay, int offsetX = 0, int offsetY = 0)
         {
             var img = config.FilterUnchangedPixels == true ?
                 changeAnalyser.BlackoutImage(image) : image;
-            creator.WriteFrame(img, frameDalay, offsetX, offsetY);
+            creator.WriteFrame(img, frameDelay, offsetX, offsetY);
         }
 
         public void Dispose()
