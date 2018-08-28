@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CMK
 {
-    public class Creator : IDisposable
+    internal class Creator : IDisposable
     {
         private class CrcCalculator
         {
