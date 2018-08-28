@@ -7,6 +7,16 @@ Dispose the creator to end the creating process. On disposing the count of image
 
 27.8.2018  Filter added to detect unchanged pixels, console app added 
 
+The filter to remove unchanged pixels is on by default. If you don't want to use the filter, you just have to pass a config to the constructor:
+
+```csharp
+var config = new AnimatedPngCreator.Config
+{
+    FilterUnchangedPixels = false
+};
+using (var apngCreator = new AnimatedPngCreator(outputFile, image1.Width, image1.Height, config))
+```
+
 Example 1:
 
 ```csharp
