@@ -38,7 +38,7 @@ namespace CMK
         public void WriteFrame(Image image, short frameDelay, int offsetX = 0, int offsetY = 0)
         {
             var img = config.FilterUnchangedPixels == true ?
-                changeAnalyser.BlackoutImage(image) : image;
+                changeAnalyser.BlackoutImage(image, out bool b) : image;
             creator.WriteFrame(img, frameDelay, offsetX, offsetY);
         }
 
