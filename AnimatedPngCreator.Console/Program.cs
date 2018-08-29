@@ -11,6 +11,8 @@ namespace AnimatedPngCreator.Console
 {
     class Program
     {
+        // Use the first argument for the output filename,
+        // after that all the images to use in the animation.
         static void Main(string[] args)
         {
             if(args.Length > 2)
