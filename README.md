@@ -1,11 +1,17 @@
 # AnimatedPngCreator
 Creates animated PNG out ouf a sequence of Images.
 
+Please use NuGet package v1.0.2 because there is a bug in v1.0.1.
+<br>
 [Get the package on NuGet](https://www.nuget.org/packages/AnimatedPngCreator/)
 
 Dispose the creator to end the creating process. On disposing the count of images will be written to the header.
 
-27.8.2018  Filter added to detect unchanged pixels, console app added 
+
+29.8.2018  Bug Fixed, Test added, v1.0.2 deployed on NuGet
+<br>
+27.8.2018  Filter added to detect unchanged pixels, console app added, v1.0.1 deployed on NuGet
+
 
 The filter to remove unchanged pixels is on by default. If you don't want to use the filter, you just have to pass a config to the constructor:
 
