@@ -370,6 +370,7 @@ namespace CMK
         {
             write_IEND();
             write_acTL();
+            _writer.Dispose();
         }
     }
 }
