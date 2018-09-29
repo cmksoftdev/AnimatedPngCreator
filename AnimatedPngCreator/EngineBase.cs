@@ -48,7 +48,7 @@ namespace CMK
             }
         }
 
-        protected byte[] getSwappedCrc(byte[] chunk)
+        public static byte[] getSwappedCrc(byte[] chunk)
         {
             var crc32 = new CrcCalculator();
             var crc = crc32.GetCRC32(chunk);
@@ -57,14 +57,14 @@ namespace CMK
             return crcArray;
         }
 
-        protected byte[] getSwappedArray(int i)
+        public static byte[] getSwappedArray(int i)
         {
             Byte[] bytes = BitConverter.GetBytes(i);
             Array.Reverse(bytes);
             return bytes;
         }
 
-        protected byte[] getSwappedArray(short s)
+        public static byte[] getSwappedArray(short s)
         {
             Byte[] bytes = BitConverter.GetBytes(s);
             Array.Reverse(bytes);

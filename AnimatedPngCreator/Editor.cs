@@ -43,6 +43,7 @@ namespace CMK
         private void load(Stream stream)
         {
             var acTL = find(stream, "acTL".ToCharArray());
+
             var signature = SIGNATURE;
             var IHDR = find_IHDR(stream)[0];
             var IDAT = find_IDAT(stream);
@@ -57,6 +58,9 @@ namespace CMK
             firstFrameStream.Write(IDATArray, signature.Length + IHDR.Length, signature.Length + IHDR.Length + idatSize);
             firstFrameStream.Write(iend, signature.Length + IHDR.Length + idatSize, size);
             Image firstImage = new Bitmap(firstFrameStream);
+
+
+
             stream.Dispose();
         }
 
