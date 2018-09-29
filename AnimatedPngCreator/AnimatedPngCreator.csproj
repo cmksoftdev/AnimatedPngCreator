@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="AnimatedPngCreator.cs" />
     <Compile Include="Creator.cs" />
+    <Compile Include="DTOs\AnimatedPng.cs" />
+    <Compile Include="Editor.cs" />
+    <Compile Include="EngineBase.cs" />
     <Compile Include="ImageChangeAnalyser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
