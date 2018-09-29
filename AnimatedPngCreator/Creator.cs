@@ -62,11 +62,7 @@ namespace CMK
 
         private void write_Signature()
         {
-            Byte[] signature =
-            {
-                0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A
-            };
-            write(signature);
+            write(SIGNATURE);
         }
 
         private void write_IHDR(Stream png) // Image Header
@@ -143,11 +139,7 @@ namespace CMK
 
         private void write_IEND()
         {
-            Byte[] iend =
-            {
-                0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82
-            };
-            write(iend);
+            write(IEND);
         }
 
         private void write_IDAT(Stream png)
