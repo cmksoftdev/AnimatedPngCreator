@@ -110,6 +110,33 @@ namespace AnimatedPngCreator.Tests
             // Assert
             CollectionAssert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void getSwappedArrayTest1()
+        {
+            // Arrange
+            byte[] expected = new byte[] { 0x00, 0x00, 0x00, 0x00 };
+
+            // Act
+            var result = EngineBase.getSwappedArray(0);
+
+            // Assert
+            CollectionAssert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void getSwappedArrayTest2()
+        {
+            // Arrange
+            byte[] expected = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF };
+            uint ui = 4294967295;
+
+            // Act
+            var result = EngineBase.getSwappedArray((int)ui);
+
+            // Assert
+            CollectionAssert.AreEqual(expected, result);
+        }
     }
 }
 
