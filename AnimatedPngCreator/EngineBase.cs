@@ -106,5 +106,42 @@ namespace CMK
             }
             return result;
         }
+
+        public List<int> FindSequence(byte[] bytes, byte[] seqBytes)
+        {
+            int i = 0;
+            var result = new List<int>();
+            byte[] buffer = new byte[bytes.Length];
+            while (i < seqBytes.Length)
+            {
+                buffer.Skip(1)
+                    .ToArray()
+                    .CopyTo(buffer, 0);
+                buffer[bytes.Length - 1] = seqBytes[i];
+                if (buffer.SequenceEqual(bytes))
+                    result.Add(i - bytes.Length + 1);
+                i++;
+            }
+            return result;
+        }
+
+        public List<int> FindSequence(byte[] bytes, Stream stream)
+        {
+            int i = 0;
+            var result = new List<int>();
+            byte[] buffer = new byte[bytes.Length];
+            while (i < stream.Length)
+            {
+                buffer.Skip(1)
+                    .ToArray()
+                    .CopyTo(buffer, 0);
+                buffer[bytes.Length - 1] = (byte)stream.ReadByte();
+                if (buffer.SequenceEqual(bytes))
+                    result.Add(i - bytes.Length + 1);
+                i++;
+            }
+            stream.Flush();
+            return result;
+        }
     }
 }
