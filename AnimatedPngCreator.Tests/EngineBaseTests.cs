@@ -34,44 +34,36 @@ namespace AnimatedPngCreator.Tests
                 0x01,0x12,0x12,
                 0x11,0x11,0x11,0x11,0x11
         };
+        List<int> expected1 = new List<int> { 5, 17, 29 };
+        List<int> expected2 = new List<int> { 5, 18, 31 };
+        byte[] sequence1 = new byte[] { 0x01, 0x12 };
+        byte[] sequence2 = new byte[] { 0x01, 0x12, 0x12 };
 
         [TestMethod]
         public void FindSequenceTest1()
         {
             // Arrange
-
             var stream = new MemoryStream(array1);
-            byte[] sequence = new byte[] { 0x01, 0x12 };
-            var expected = new List<int>
-            {
-                5, 17, 29
-            };
             var sut = new EngineBase();
 
             // Act
-            var result = sut.FindSequence(sequence, stream);
+            var result = sut.FindSequence(sequence1, stream);
 
             // Assert
-            CollectionAssert.AreEqual(expected, result);
+            CollectionAssert.AreEqual(expected1, result);
         }
 
         [TestMethod]
         public void FindSequenceTest2()
         {
             // Arrange
-
-            byte[] sequence = new byte[] { 0x01, 0x12, 0x12 };
-            var expected = new List<int>
-            {
-                5, 18, 31
-            };
             var sut = new EngineBase();
 
             // Act
-            var result = sut.FindSequence(sequence, array2);
+            var result = sut.FindSequence(sequence2, array2);
 
             // Assert
-            CollectionAssert.AreEqual(expected, result);
+            CollectionAssert.AreEqual(expected2, result);
         }
 
         [TestMethod]
@@ -79,36 +71,26 @@ namespace AnimatedPngCreator.Tests
         {
             // Arrange
             var stream = new MemoryStream(array2);
-            byte[] sequence = new byte[] { 0x01, 0x12, 0x12 };
-            var expected = new List<int>
-            {
-                5, 18, 31
-            };
             var sut = new EngineBase();
 
             // Act
-            var result = sut.FindSequence(sequence, stream);
+            var result = sut.FindSequence(sequence2, stream);
 
             // Assert
-            CollectionAssert.AreEqual(expected, result);
+            CollectionAssert.AreEqual(expected2, result);
         }
 
         [TestMethod]
         public void FindSequenceTest4()
         {
             // Arrange
-            byte[] sequence = new byte[] { 0x01, 0x12 };
-            var expected = new List<int>
-            {
-                5, 17, 29
-            };
             var sut = new EngineBase();
 
             // Act
-            var result = sut.FindSequence(sequence, array1);
+            var result = sut.FindSequence(sequence1, array1);
 
             // Assert
-            CollectionAssert.AreEqual(expected, result);
+            CollectionAssert.AreEqual(expected1, result);
         }
 
         [TestMethod]
