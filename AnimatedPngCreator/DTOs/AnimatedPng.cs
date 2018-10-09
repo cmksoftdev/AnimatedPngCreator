@@ -20,7 +20,13 @@ namespace CMK.DTOs
             public uint num_frames { get; set; }
             public uint num_plays { get; set; }
 
-            public byte[] ToByteArry()
+            public acTL(byte[] array)
+            {
+                if (array.Length != 20)
+                    throw new Exception("Invalid acTL array length. It has to be 20 bytes.");
+            }
+
+            public byte[] ToByteArray()
             {
                 var array = new byte[20];
                 EngineBase.getSwappedArray(8).CopyTo(array, 0);
@@ -44,7 +50,18 @@ namespace CMK.DTOs
             public byte dispose_op { get; set; }
             public byte blend_op { get; set; }
 
-            public byte[] ToByteArry()
+            public fcTL(byte[] array)
+            {
+                if (array.Length != 38)
+                    throw new Exception("Invalid fcTL array length. It has to be 38 bytes.");
+            }
+
+            public fcTL(IHDR ihdr)
+            {
+
+            }
+
+            public byte[] ToByteArray()
             {
                 var array = new byte[38];
                 EngineBase.getSwappedArray(26).CopyTo(array, 0);
@@ -73,7 +90,18 @@ namespace CMK.DTOs
             public byte filter_method { get; set; }
             public byte interlace_method { get; set; }
 
-            public byte[] ToByteArry()
+            public IHDR(byte[] array)
+            {
+                if (array.Length != 25)
+                    throw new Exception("Invalid IHDR array length. It has to be 25 bytes.");
+            }
+
+            public IHDR(fcTL fctl)
+            {
+
+            }
+
+            public byte[] ToByteArray()
             {
                 var array = new byte[25];
                 EngineBase.getSwappedArray(13).CopyTo(array, 0);
