@@ -13,6 +13,34 @@ Dispose the creator to end the creating process. On disposing the count of image
 <br>
 27.8.2018  Filter added to detect unchanged pixels, console app added, v1.0.1 deployed on NuGet
 
+From v1.0.3 it is possible to use the static Create method. 
+
+```csharp
+// Example 1:
+var filePaths = new List<string>
+{
+    "1.bmp", "2.bmp", "3.bmp"
+};
+CMK.AnimatedPngCreator.Create("out.png", filePaths, 1000);
+
+// Example 2:
+var images = new List<Image>
+{
+    Image.FromFile("1.bmp"),
+    Image.FromFile("2.bmp"),
+    Image.FromFile("3.bmp")
+};
+CMK.AnimatedPngCreator.Create("actual2.png", images, 1000);
+
+// Example 3:
+var images = new List<Frame>
+{
+    CMK.AnimatedPngCreator.Frame(Image.FromFile("1.bmp"), 1000),
+    CMK.AnimatedPngCreator.Frame(Image.FromFile("2.bmp"), 1000),
+    CMK.AnimatedPngCreator.Frame(Image.FromFile("3.bmp"), 1000)
+};
+CMK.AnimatedPngCreator.Create("actual3.png", images);
+```
 
 The filter to remove unchanged pixels is on by default. If you don't want to use the filter, you just have to pass a config to the constructor:
 
