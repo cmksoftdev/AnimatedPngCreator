@@ -64,8 +64,8 @@ namespace AnimatedPngCreator.Tests
             };
 
             // Act
-            CMK.AnimatedPngCreator.Create("actual2.png", images);
-            var actual = File.ReadAllBytes("actual2.png");
+            CMK.AnimatedPngCreator.Create("actual3.png", images);
+            var actual = File.ReadAllBytes("actual3.png");
 
             // Assert
             Assert.IsTrue(expectedBytes.SequenceEqual(actual));
@@ -76,6 +76,7 @@ namespace AnimatedPngCreator.Tests
         {
             File.Delete("actual1.png");
             File.Delete("actual2.png");
+            File.Delete("actual3.png");
         }
     }
 }
