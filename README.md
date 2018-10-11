@@ -1,7 +1,7 @@
 # AnimatedPngCreator
 Creates animated PNG out ouf a sequence of Images.
 
-Please use NuGet package v1.0.2 because there is a bug in v1.0.1.
+Please use the newest version on NuGet.
 <br>
 [Get the package on NuGet](https://www.nuget.org/packages/AnimatedPngCreator/)
 
