@@ -31,6 +31,23 @@ namespace CMK
             }
         }
 
+        /// <summary>
+        /// Creates an APNG.
+        /// </summary>
+        /// <param name="outputFilePath">File path for the output file</param>
+        /// <param name="imagePaths">Image paths to combine to a apng</param>
+        /// <param name="frameDelay">Frame delay for all images</param>
+        /// <param name="config">Configuration</param>
+        public static void Create(string outputFilePath, IEnumerable<string> imagePaths, short frameDelay, Config config = null)
+        {
+            var images = new List<Image>();
+            foreach(var imagePath in imagePaths)
+            {
+                images.Add(Image.FromFile(imagePath));
+            }
+            Create(outputFilePath, images, frameDelay);
+        }
+
         public class Config
         {
             public bool? FilterUnchangedPixels { get; set; }
