@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMK.DTOs
+namespace CMK
 {
-    internal class AnimatedPng
+    public class AnimatedPng
     {
-        internal class Frame
+        public class Frame
         {
             public Image Image { get; set; }
             public short Delay { get; set; }
