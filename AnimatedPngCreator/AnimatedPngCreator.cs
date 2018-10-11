@@ -45,7 +45,7 @@ namespace CMK
             var yMax = frames.Max(x => x.Image.Height);
             using (var outpufFile = File.Create(outputFilePath))
             {
-                using (var creator = new AnimatedPngCreator(outpufFile, xMax, yMax, config, 0, repeat))
+                using (var creator = new AnimatedPngCreator(outpufFile, xMax, yMax, config, 500, repeat))
                 {
                     foreach (var image in frames)
                     {
@@ -113,7 +113,7 @@ namespace CMK
         public AnimatedPngCreator(Stream stream, int x, int y, Config config, int defaultDelay = 500, int repeat = 0)
         {
             creator = new Creator(stream, x, y, defaultDelay, repeat);
-            this.config = config;
+            this.config = config ?? new Config { FilterUnchangedPixels = true };
             init();
         }
 
