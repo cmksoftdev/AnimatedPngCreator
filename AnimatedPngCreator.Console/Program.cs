@@ -25,8 +25,7 @@ namespace AnimatedPngCreator.Console
                         x = firstImage.Width;
                         y = firstImage.Height;
                     }
-                    var config = new CMK.AnimatedPngCreator.Config { };
-                    using (CMK.AnimatedPngCreator creator = new CMK.AnimatedPngCreator(output, x, y, config))
+                    using (CMK.AnimatedPngCreator creator = new CMK.AnimatedPngCreator(output, x, y))
                     {
                         var imagePaths = args.Skip(1);
                         foreach (var imagePath in imagePaths)
