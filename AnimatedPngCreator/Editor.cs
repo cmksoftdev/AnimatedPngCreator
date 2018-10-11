@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CMK.DTOs.AnimatedPng;
+using static CMK.AnimatedPng;
 
 namespace CMK
 {
