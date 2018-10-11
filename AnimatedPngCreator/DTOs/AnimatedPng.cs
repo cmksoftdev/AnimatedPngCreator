@@ -118,6 +118,11 @@ namespace CMK.DTOs
             }
         }
 
+        internal class IDAT
+        {
+            
+        }
+
         public string FilePath { get; set; }
         public List<Frame> Frames { get; set; }
     }

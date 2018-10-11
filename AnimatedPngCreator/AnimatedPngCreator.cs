@@ -33,6 +33,7 @@ namespace CMK
         {
             creator = new Creator(stream, x, y, defaultDelay, repeat);
             this.config = config;
+            init();
         }
 
         public void WriteFrame(Image image, short frameDelay, int offsetX = 0, int offsetY = 0)
