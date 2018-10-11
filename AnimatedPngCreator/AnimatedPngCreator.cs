@@ -1,11 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace CMK
 {
     public class AnimatedPngCreator : IDisposable
     {
+        /// <summary>
+        /// Creates an APNG.
+        /// </summary>
+        /// <param name="outputFilePath">File path for the output file</param>
+        /// <param name="images">Images to combine to a apng</param>
+        /// <param name="frameDelay">Frame delay for all images</param>
+        /// <param name="config">Configuration</param>
+        public static void Create(string outputFilePath, IEnumerable<Image> images, short frameDelay, Config config = null)
+        {
+            var xMax = images.Max(x => x.Width);
+            var yMax = images.Max(x => x.Height);
+            using (var outpufFile = File.Create(outputFilePath))
+            {
+                using (var creator = new AnimatedPngCreator(outpufFile, xMax, yMax, config, frameDelay, 0))
+                {
+                    foreach(var image in images)
+                    {
+                        creator.WriteFrame(image, frameDelay);
+                    }
+                }
+            }
+        }
+
         public class Config
         {
             public bool? FilterUnchangedPixels { get; set; }
