@@ -7,7 +7,8 @@ Please use NuGet package v1.0.2 because there is a bug in v1.0.1.
 
 Dispose the creator to end the creating process. On disposing the count of images will be written to the header.
 
-
+12.10.2018  Bug Fixed, Tests added, new static methods added - v1.0.3 merged to master
+<br>
 29.8.2018  Bug Fixed, Test added, v1.0.2 deployed on NuGet
 <br>
 27.8.2018  Filter added to detect unchanged pixels, console app added, v1.0.1 deployed on NuGet
