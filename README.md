@@ -30,16 +30,16 @@ var images = new List<Image>
     Image.FromFile("2.bmp"),
     Image.FromFile("3.bmp")
 };
-CMK.AnimatedPngCreator.Create("actual2.png", images, 1000);
+CMK.AnimatedPngCreator.Create("out.png", images, 1000);
 
 // Example 3:
-var images = new List<Frame>
+var frames = new List<Frame>
 {
     CMK.AnimatedPngCreator.Frame(Image.FromFile("1.bmp"), 1000),
     CMK.AnimatedPngCreator.Frame(Image.FromFile("2.bmp"), 1000),
     CMK.AnimatedPngCreator.Frame(Image.FromFile("3.bmp"), 1000)
 };
-CMK.AnimatedPngCreator.Create("actual3.png", images);
+CMK.AnimatedPngCreator.Create("out.png", frames);
 ```
 
 The filter to remove unchanged pixels is on by default. If you don't want to use the filter, you just have to pass a config to the constructor:
