@@ -76,13 +76,27 @@ namespace CMK
         /// <summary>
         /// Creates an frame object.
         /// </summary>
-        /// <param name="image">File path for the output file.</param>
+        /// <param name="image">Image of this frame.</param>
         /// <param name="delay">Frame delay for this image.</param>
         public static AnimatedPng.Frame Frame(Image image, short delay)
         {
             return new AnimatedPng.Frame
             {
                 Image = image,
+                Delay = delay
+            };
+        }
+
+        /// <summary>
+        /// Creates an frame object.
+        /// </summary>
+        /// <param name="imageFilePath">File path for image.</param>
+        /// <param name="delay">Frame delay for this image.</param>
+        public static AnimatedPng.Frame Frame(string imageFilePath, short delay)
+        {
+            return new AnimatedPng.Frame
+            {
+                Image = Image.FromFile(imageFilePath),
                 Delay = delay
             };
         }
