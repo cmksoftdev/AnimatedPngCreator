@@ -104,6 +104,7 @@ namespace CMK
         public class Config
         {
             public bool? FilterUnchangedPixels { get; set; }
+            public string FallbackImage { get; set; }
         }
 
         private readonly Creator creator;

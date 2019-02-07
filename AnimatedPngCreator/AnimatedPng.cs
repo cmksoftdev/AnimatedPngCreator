@@ -56,9 +56,24 @@ namespace CMK
                     throw new Exception("Invalid fcTL array length. It has to be 38 bytes.");
             }
 
-            public fcTL(IHDR ihdr)
+            public fcTL(
+                IHDR ihdr,
+                uint x_offset,
+                uint y_offset,
+                ushort delay_num,
+                ushort delay_den,
+                byte dispose_op,
+                byte blend_op
+                )
             {
-
+                width = ihdr.width;
+                height = ihdr.height;
+                this.x_offset = x_offset;
+                this.y_offset = y_offset;
+                this.delay_num = delay_num;
+                this.delay_den = delay_den;
+                this.dispose_op = dispose_op;
+                this.blend_op = blend_op;
             }
 
             public byte[] ToByteArray()
@@ -96,9 +111,22 @@ namespace CMK
                     throw new Exception("Invalid IHDR array length. It has to be 25 bytes.");
             }
 
-            public IHDR(fcTL fctl)
+            public IHDR(
+                fcTL fctl,
+                byte bit_depth,
+                byte color_type,
+                byte compression_method,
+                byte filter_method,
+                byte interlace_method
+                )
             {
-
+                width = fctl.width;
+                height = fctl.height;
+                this.bit_depth = bit_depth;
+                this.color_type = color_type;
+                this.compression_method = compression_method;
+                this.filter_method = filter_method;
+                this.interlace_method = interlace_method;
             }
 
             public byte[] ToByteArray()
