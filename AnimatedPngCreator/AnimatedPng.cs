@@ -9,24 +9,29 @@ namespace CMK
 {
     public class AnimatedPng
     {
+        internal abstract class Chunk
+        {
+            public abstract byte[] ToByteArray();
+        }
+
         public class Frame
         {
             public Image Image { get; set; }
             public short Delay { get; set; }
         }
 
-        internal class acTL
+        internal class acTL : Chunk
         {
             public uint num_frames { get; set; }
             public uint num_plays { get; set; }
 
             public acTL(byte[] array)
-            {
+            { //TODO Implement!
                 if (array.Length != 20)
                     throw new Exception("Invalid acTL array length. It has to be 20 bytes.");
             }
 
-            public byte[] ToByteArray()
+            public override byte[] ToByteArray()
             {
                 var array = new byte[20];
                 EngineBase.getSwappedArray(8).CopyTo(array, 0);
@@ -38,7 +43,7 @@ namespace CMK
             }
         }
 
-        internal class fcTL
+        internal class fcTL : Chunk
         {
             public uint sequence_number { get; set; }
             public uint width { get; set; }
@@ -51,7 +56,7 @@ namespace CMK
             public byte blend_op { get; set; }
 
             public fcTL(byte[] array)
-            {
+            { //TODO Implement!
                 if (array.Length != 38)
                     throw new Exception("Invalid fcTL array length. It has to be 38 bytes.");
             }
@@ -76,7 +81,7 @@ namespace CMK
                 this.blend_op = blend_op;
             }
 
-            public byte[] ToByteArray()
+            public override byte[] ToByteArray()
             {
                 var array = new byte[38];
                 EngineBase.getSwappedArray(26).CopyTo(array, 0);
@@ -95,7 +100,7 @@ namespace CMK
             }
         }
 
-        internal class IHDR
+        internal class IHDR : Chunk
         {
             public uint width { get; set; }
             public uint height { get; set; }
@@ -106,7 +111,7 @@ namespace CMK
             public byte interlace_method { get; set; }
 
             public IHDR(byte[] array)
-            {
+            { //TODO Implement!
                 if (array.Length != 25)
                     throw new Exception("Invalid IHDR array length. It has to be 25 bytes.");
             }
@@ -129,7 +134,7 @@ namespace CMK
                 this.interlace_method = interlace_method;
             }
 
-            public byte[] ToByteArray()
+            public override byte[] ToByteArray()
             {
                 var array = new byte[25];
                 EngineBase.getSwappedArray(13).CopyTo(array, 0);
@@ -146,14 +151,38 @@ namespace CMK
             }
         }
 
-        internal class IDAT
+        internal class IDAT : Chunk
         {
-            
+            public int Length { get; set; }
+            public byte[] Data { get; set; }
+
+            public IDAT(byte[] array)
+            { //TODO Implement!
+                if (array.Length != 8)
+                    throw new Exception("Invalid IDAT array length. It has to be 25 bytes.");
+            }
+
+            public override byte[] ToByteArray()
+            { //TODO Implement!
+                throw new NotImplementedException();
+            }
         }
 
-        internal class fdAT
+        internal class fdAT : Chunk
         {
+            public int Length { get; set; }
+            public byte[] Data { get; set; }
 
+            public fdAT(byte[] array)
+            { //TODO Implement!
+                if (array.Length != 8)
+                    throw new Exception("Invalid IDAT array length. It has to be 25 bytes.");
+            }
+
+            public override byte[] ToByteArray()
+            { //TODO Implement!
+                throw new NotImplementedException();
+            }
         }
 
         public string FilePath { get; set; }
