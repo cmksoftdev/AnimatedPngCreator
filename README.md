@@ -13,7 +13,7 @@ Dispose the creator to end the creating process. On disposing the count of image
 <br>
 27.8.2018  Filter added to detect unchanged pixels, console app added, v1.0.1 deployed on NuGet
 
-V1.0.3 makes it is possible to use the static Create method. 
+V1.0.3 makes it possible to use the static Create method. 
 
 The third parameter is the time to show the frame, in milli seconds.
 ```csharp
