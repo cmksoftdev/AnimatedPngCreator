@@ -9,8 +9,8 @@ namespace CMK
 {
     internal class EngineBase
     {
-        protected static readonly Byte[] IEND = { 0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82 };
-        protected static readonly Byte[] SIGNATURE = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
+        protected static readonly byte[] IEND = { 0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82 };
+        protected static readonly byte[] SIGNATURE = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
 
         internal class CrcCalculator
         {
@@ -57,35 +57,87 @@ namespace CMK
             return crcArray;
         }
 
+        public static uint getCrc(byte[] chunk)
+        {
+            var crc32 = new CrcCalculator();
+            return crc32.GetCRC32(chunk);
+        }
+
+        public static byte[] skipLengthPropertyAndGetSwappedCrc(byte[] chunk)
+        {
+            return getSwappedCrc(chunk.Skip(4)
+                .Take(chunk.Length - 8)
+                .ToArray());
+        }
+
+        public static uint skipLengthPropertyAndGetCrc(byte[] chunk)
+        {
+            return getCrc(chunk.Skip(4)
+                .Take(chunk.Length - 8)
+                .ToArray());
+        }
+
         public static byte[] getSwappedArray(int i)
         {
-            Byte[] bytes = BitConverter.GetBytes(i);
+            byte[] bytes = BitConverter.GetBytes(i);
             Array.Reverse(bytes);
             return bytes;
+        }
+
+        public static byte[] getSwappedArray(byte[] array, int offset, int count)
+        {
+            byte[] bytes = new byte[count];
+            Array.Copy(array, offset, bytes, 0, count);
+            Array.Reverse(bytes);
+            return bytes;
+        }
+
+        public static int getSwappedInt(byte[] array, int offset)
+        {
+            byte[] bytes = new byte[4];
+            Array.Copy(array, offset, bytes, 0, 4);
+            Array.Reverse(bytes);
+            return BitConverter.ToInt32(bytes, 0);
+        }
+
+        public static uint getSwappedUInt(byte[] array, int offset)
+        {
+            byte[] bytes = new byte[4];
+            Array.Copy(array, offset, bytes, 0, 4);
+            Array.Reverse(bytes);
+            return BitConverter.ToUInt32(bytes, 0);
+        }
+
+        public static ushort getSwappedUShort(byte[] array, int offset)
+        {
+            byte[] bytes = new byte[2];
+            Array.Copy(array, offset, bytes, 0, 2);
+            Array.Reverse(bytes);
+            return BitConverter.ToUInt16(bytes, 0);
         }
 
         public static byte[] getSwappedArray(short s)
         {
-            Byte[] bytes = BitConverter.GetBytes(s);
+            byte[] bytes = BitConverter.GetBytes(s);
             Array.Reverse(bytes);
             return bytes;
         }
 
-        protected List<Byte[]> find_IHDR(Stream png)
+        protected List<byte[]> find_IHDR(Stream png)
         {
             return find(png, "IHDR".ToCharArray());
         }
 
-        protected List<Byte[]> find_IDAT(Stream png)
+        protected List<byte[]> find_IDAT(Stream png)
         {
             return find(png, "IDAT".ToCharArray());
         }
 
-        protected List<Byte[]> find(Stream png, Char[] search)
+        protected List<byte[]> find(Stream png, char[] search)
         {
-            List<Byte[]> result = new List<byte[]>();
+            List<byte[]> result = new List<byte[]>();
             var searchBytes = search.Select(c => (byte)c).ToArray();
-            Byte[] bytes = new Byte[search.Length];
+            byte[] bytes = new byte[search.Length];
             int i = 0;
             int found = 0;
             while (i < png.Length - 4)
@@ -96,12 +148,12 @@ namespace CMK
                 i++;
                 if (bytes.SequenceEqual(searchBytes))
                 {
-                    Byte[] rawLength = new Byte[4];
+                    byte[] rawLength = new byte[4];
                     png.Position -= 8;
                     png.Read(rawLength, 0, 4);
                     Array.Reverse(rawLength);
-                    UInt32 length = BitConverter.ToUInt32(rawLength, 0);
-                    result.Add(new Byte[length + 12]);
+                    uint length = BitConverter.ToUInt32(rawLength, 0);
+                    result.Add(new byte[length + 12]);
                     png.Position -= 4;
                     png.Read(result[found], 0, (int)(length + 12));
                     found++;
