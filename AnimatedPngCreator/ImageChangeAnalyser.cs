@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using AnimatedPngCreator;
+using System.Drawing;
 
 namespace CMK
 {
@@ -7,7 +8,7 @@ namespace CMK
         private Bitmap oldImage = null;
 
         private bool isB = false;
-        public Image BlackoutImage(Image newImage)
+        public IImage BlackoutImage(IImage newImage)
         {
             int s = 0;// isB ? 1 : 0;
             isB = !isB;

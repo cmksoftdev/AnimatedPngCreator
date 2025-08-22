@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnimatedPngCreator;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -132,7 +133,7 @@ namespace CMK
             init();
         }
 
-        public void WriteFrame(Image image, short frameDelay, int offsetX = 0, int offsetY = 0)
+        public void WriteFrame(IImage image, short frameDelay, int offsetX = 0, int offsetY = 0)
         {
             var img = config.FilterUnchangedPixels == true ?
                 changeAnalyser.BlackoutImage(image, out bool b) : image;
