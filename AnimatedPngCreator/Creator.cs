@@ -107,17 +107,17 @@ namespace CMK
         private void write_fcTL(int x, int y, int offsetX, int offsetY, short frameDelay) // Frame Control Chunk
         {
             //Prepare data
-            List<Byte> chunk = new List<byte>();
-            Byte[] _ChunkSequenceNumber = getSwappedArray(ChunkSequenceNumber);
-            Byte[] _x = getSwappedArray(x);
-            Byte[] _y = getSwappedArray(y);
-            Byte[] _offsetX = getSwappedArray(offsetX);
-            Byte[] _offsetY = getSwappedArray(offsetY);
-            Byte[] _DefaultFrameDelay = getSwappedArray(frameDelay);
-            Byte[] _FrameCount2 = getSwappedArray((short)FrameCount);
+            List<byte> chunk = new List<byte>();
+            byte[] _ChunkSequenceNumber = getSwappedArray(ChunkSequenceNumber);
+            byte[] _x = getSwappedArray(x);
+            byte[] _y = getSwappedArray(y);
+            byte[] _offsetX = getSwappedArray(offsetX);
+            byte[] _offsetY = getSwappedArray(offsetY);
+            byte[] _DefaultFrameDelay = getSwappedArray(frameDelay);
+            byte[] _FrameCount2 = getSwappedArray((short)FrameCount);
 
             //Assemble data
-            chunk.AddRange(new Byte[] { 0, 0, 0, 26 });
+            chunk.AddRange(new byte[] { 0, 0, 0, 26 });
             chunk.AddRange("fcTL".ToCharArray().Select(c => (byte)c).ToArray());
             chunk.AddRange(_ChunkSequenceNumber);
             chunk.AddRange(_x);
@@ -125,8 +125,8 @@ namespace CMK
             chunk.AddRange(_offsetX);
             chunk.AddRange(_offsetY);
             chunk.AddRange(_DefaultFrameDelay);
-            chunk.AddRange(new Byte[] { 3, 232 });
-            chunk.AddRange(new Byte[] { 0, 1 });
+            chunk.AddRange(new byte[] { 3, 232 });
+            chunk.AddRange(new byte[] { 0, 1 });
 
             //Write data
             _writer.Write(chunk.ToArray());
@@ -144,7 +144,7 @@ namespace CMK
 
         private void write_IDAT(Stream png)
         {
-            List<Byte[]> idatList = find_IDAT(png);
+            List<byte[]> idatList = find_IDAT(png);
             foreach (var idat in idatList)
             {
                 if (idat != null)
@@ -156,16 +156,16 @@ namespace CMK
 
         private void write_fdAT(Stream png)
         {
-            List<Byte[]> idatList = find_IDAT(png);
+            List<byte[]> idatList = find_IDAT(png);
             foreach (var idat in idatList)
             {
                 if (idat != null)
                 {
                     //Prepare data
-                    Byte[] _ChunkSequenceNumber = getSwappedArray(ChunkSequenceNumber);
+                    byte[] _ChunkSequenceNumber = getSwappedArray(ChunkSequenceNumber);
                     var length = idat.Count() - 8;
                     var lengthArray = getSwappedArray(length);
-                    Byte[] fdAT = new byte[idat.Count()];
+                    byte[] fdAT = new byte[idat.Count()];
                     var sign = "fdAT".ToCharArray().Select(c => (byte)c).ToArray();
                     var idat2 = idat.Take(idat.Count() - 4).ToArray();
                     idat2 = idat2.Skip(8).ToArray();
@@ -189,7 +189,7 @@ namespace CMK
 
 
 
-        private void write(Byte[] data)
+        private void write(byte[] data)
         {
             _writer.Write(data);
         }
@@ -197,8 +197,8 @@ namespace CMK
         private void write_acTL()
         {
             //Prepare data
-            Byte[] _FrameCount = getSwappedArray((int)FrameCount);
-            Byte[] _Repeat = getSwappedArray(Repeat);
+            byte[] _FrameCount = getSwappedArray((int)FrameCount);
+            byte[] _Repeat = getSwappedArray(Repeat);
 
             //Assemble data
             List<byte> chunk = new List<byte>()
