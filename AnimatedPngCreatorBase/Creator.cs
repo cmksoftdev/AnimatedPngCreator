@@ -100,7 +100,7 @@ namespace CMK
             _writer.Write(getSwappedCrc(text3));
         }
 
-        private void write_fcTL(int x, int y, int offsetX, int offsetY, short frameDelay) // Frame Control Chunk
+        private void write_fcTL(int x, int y, int offsetX, int offsetY, short frameDelay, byte disposeOption, byte blendOption) // Frame Control Chunk
         {
             //Prepare data
             List<byte> chunk = new List<byte>();
@@ -121,8 +121,8 @@ namespace CMK
             chunk.AddRange(_offsetX);
             chunk.AddRange(_offsetY);
             chunk.AddRange(_DefaultFrameDelay);
-            chunk.AddRange(new byte[] { 3, 232 });
-            chunk.AddRange(new byte[] { 0, 1 });
+            chunk.AddRange(new Byte[] { 3, 232 });
+            chunk.AddRange(new Byte[] { disposeOption, blendOption });
 
             //Write data
             _writer.Write(chunk.ToArray());
@@ -216,7 +216,7 @@ namespace CMK
         /// <param name="Image">The image to add</param>
         /// <param name="offsetX">X offset to render the image</param>
         /// <param name="offsetY">Y offset to render the image</param>
-        public void WriteFrame(IExtendedBitmap image, short frameDelay, int offsetX = 0, int offsetY = 0)
+        public void WriteFrame(IExtendedBitmap image, short frameDelay, int offsetX = 0, int offsetY = 0, byte disposeOption = 0, byte blendOption = 1)
         {
             using (var png = new MemoryStream())
             {
@@ -228,7 +228,7 @@ namespace CMK
                     write_tEXt_signature();
                     write_acTL_placeholder();
                 }
-                write_fcTL((int)image.Width, (int)image.Height, offsetX, offsetY, frameDelay);
+                write_fcTL((int)image.Width, (int)image.Height, offsetX, offsetY, frameDelay, disposeOption, blendOption);
                 if (FrameCount == 1)
                     write_IDAT(png);
                 else
