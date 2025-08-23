@@ -128,11 +128,11 @@ namespace CMK
             init();
         }
 
-        public void WriteFrame(IExtendedBitmap image, short frameDelay, int offsetX = 0, int offsetY = 0)
+        public void WriteFrame(IExtendedBitmap image, short frameDelay, int offsetX = 0, int offsetY = 0, byte disposeOption = 0, byte blendOption = 1)
         {
             var img = config.FilterUnchangedPixels == true ?
                 changeAnalyser.BlackoutImage(image, out bool b) : image;
-            creator.WriteFrame(img, frameDelay, offsetX, offsetY);
+            creator.WriteFrame(img, frameDelay, offsetX, offsetY, disposeOption, blendOption);
         }
 
         public void Dispose() => creator.Dispose();
