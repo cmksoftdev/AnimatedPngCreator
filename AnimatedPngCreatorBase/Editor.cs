@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CMK.ExtendedBitmap;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -56,16 +57,13 @@ namespace CMK
             firstFrameStream.Write(IHDR, signature.Length, signature.Length + IHDR.Length);
             firstFrameStream.Write(IDATArray, signature.Length + IHDR.Length, signature.Length + IHDR.Length + idatSize);
             firstFrameStream.Write(iend, signature.Length + IHDR.Length + idatSize, size);
-            Image firstImage = new Bitmap(firstFrameStream);
+            //var firstImage = new ExtendedBitmap(firstFrameStream);
 
 
 
             stream.Dispose();
         }
 
-        private Frame getFrame()
-        {
-            return null;
-        }
+        private Frame getFrame() => null;
     }
 }

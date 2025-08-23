@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AnimatedPngCreator
 {
-    public interface IImage
-    {
-        uint Width { get; }
-        uint Height { get; }
+    //public interface IImage
+    //{
+    //    uint Width { get; }
+    //    uint Height { get; }
 
-        int GetPixelAsInt(int x, int y);
-    }
+    //    int GetPixelAsInt(int x, int y);
+    //}
 }

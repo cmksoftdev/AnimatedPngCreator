@@ -3,6 +3,8 @@ using System;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.IO;
 
 namespace CMK.SystemDrawingBitmapFactoryFramework
 {
@@ -17,15 +19,27 @@ namespace CMK.SystemDrawingBitmapFactoryFramework
             bitmap = new System.Drawing.Bitmap((int)width, (int)height);
         }
 
-        public void Dispose()
+        public BitmapWrapper(Bitmap bitmap)
         {
-            bitmap.Dispose();
+            this.bitmap = bitmap;
+        }
+
+        public void Dispose() => bitmap.Dispose();
+
+        public static Bitmap ChangeBitmapFormat(Bitmap original, PixelFormat newFormat)
+        {
+            Bitmap newBitmap = new Bitmap(original.Width, original.Height, newFormat);
+            using (Graphics g = Graphics.FromImage(newBitmap))
+            {
+                g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height));
+            }
+            return newBitmap;
         }
 
         public int[] GetPixelsAsIntArray()
         {
             if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)
-                throw new InvalidOperationException("Bitmap muss Format32bppArgb haben.");
+                bitmap = ChangeBitmapFormat(bitmap, PixelFormat.Format32bppArgb);
             Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             BitmapData data = bitmap.LockBits(rect, ImageLockMode.ReadOnly, bitmap.PixelFormat);
             int[] pixels = new int[bitmap.Width * bitmap.Height];
@@ -37,7 +51,7 @@ namespace CMK.SystemDrawingBitmapFactoryFramework
         public void SetPixels(int[] pixels)
         {
             if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)
-                throw new InvalidOperationException("Bitmap muss Format32bppArgb haben.");
+                bitmap = ChangeBitmapFormat(bitmap, PixelFormat.Format32bppArgb);
             if (pixels.Length != bitmap.Width * bitmap.Height)
                 throw new ArgumentException("Pixel-Array passt nicht zur Bitmap-Größe.");
             Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
@@ -45,13 +59,16 @@ namespace CMK.SystemDrawingBitmapFactoryFramework
             Marshal.Copy(pixels, 0, data.Scan0, pixels.Length);
             bitmap.UnlockBits(data);
         }
+
+        public void Save(MemoryStream stream) => bitmap.Save(stream, ImageFormat.Png);
     }
 
-    public static class BitmapFactory
+    public class BitmapFactory : IFactory
     {
         static BitmapFactory()
         {
             ExtendedBitmap.BitmapFactory._Create = (uint x, uint y) => new BitmapWrapper(x, y);
+            ExtendedBitmap.BitmapFactory._FromFile = (string filePath) => new BitmapWrapper((Bitmap)Image.FromFile(filePath));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CMK.ExtendedBitmap;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -42,7 +43,7 @@ namespace CMK
 
         public class Frame
         {
-            public Image Image { get; set; }
+            public IExtendedBitmap Image { get; set; }
             public short Delay { get; set; }
         }
 

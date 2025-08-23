@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CMK;
 using System.IO;
 using System.Drawing;
+using CMK.ExtendedBitmap;
 
 namespace AnimatedPngCreator.Console
 {
@@ -19,8 +20,8 @@ namespace AnimatedPngCreator.Console
             {
                 using (var output = File.Create(args[0]))
                 {
-                    int x=0, y=0;
-                    using (Image firstImage = Image.FromFile(args[1]))
+                    uint x = 0, y = 0;
+                    using (var firstImage = BitmapFactory.FromFile(args[1]))
                     {
                         x = firstImage.Width;
                         y = firstImage.Height;
@@ -30,7 +31,7 @@ namespace AnimatedPngCreator.Console
                         var imagePaths = args.Skip(1);
                         foreach (var imagePath in imagePaths)
                         {
-                            using (Image image = Image.FromFile(imagePath))
+                            using (var image = BitmapFactory.FromFile(imagePath))
                             {
                                 creator.WriteFrame(image, 1000);
                             }

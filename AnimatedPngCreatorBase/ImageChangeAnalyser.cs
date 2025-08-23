@@ -1,26 +1,25 @@
-﻿using AnimatedPngCreator;
-using System.Drawing;
+﻿using CMK.ExtendedBitmap;
 
 namespace CMK
 {
-    internal class ImageChangeAnalyser
+    public class ImageChangeAnalyser
     {
-        private Bitmap oldImage = null;
+        private IExtendedBitmap oldImage = null;
 
         private bool isB = false;
-        public IImage BlackoutImage(IImage newImage)
+        public IExtendedBitmap BlackoutImage(IExtendedBitmap newImage)
         {
-            int s = 0;// isB ? 1 : 0;
+            uint s = 0;// isB ? 1 : 0;
             isB = !isB;
-            var newImageBmp = new Bitmap(newImage);
+            var newImageBmp = newImage.Copy();
             var x = newImage.Width;
             var y = newImage.Height;
-            var newImage2 = new Bitmap(newImageBmp);
+            var newImage2 = newImageBmp.Copy();
             if (oldImage != null)
             {
-                for (int i = 0; i < x - 4; i += 4)
+                for (uint i = 0; i < x - 4; i += 4)
                 {
-                    for (int j = 0; j < y - 4; j += 4)
+                    for (uint j = 0; j < y - 4; j += 4)
                     {
                         Color a = oldImage.GetPixel(i + s, j + s);
                         Color b = newImageBmp.GetPixel(i + s, j + s);
@@ -35,33 +34,33 @@ namespace CMK
             return newImageBmp;
         }
 
-        private void set_transparent(Bitmap bmp, int x, int y)
+        private void set_transparent(IExtendedBitmap bmp, uint x, uint y)
         {
-            for (int i = 0; i < 4; i++)
+            for (uint i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (uint j = 0; j < 4; j++)
                 {
                     bmp.SetPixel(i + x, j + y, Color.Transparent);
                 }
             }
         }
 
-        public Image BlackoutImage(Image newImage, out bool equal)
+        public IExtendedBitmap BlackoutImage(IExtendedBitmap newImage, out bool equal)
         {
             equal = false;
             if (newImage == null)
                 return null;
-            var newImageBmp = new Bitmap(newImage);
+            var newImageBmp = newImage.Copy();
             var x = newImage.Width;
             var y = newImage.Height;
             var pixelCount = x * y;
             var changeCount = 0;
-            var newImage2 = new Bitmap(newImageBmp);
+            var newImage2 = newImageBmp.Copy();
             if (oldImage != null)
             {
-                for (int i = 0; i < x; i++)
+                for (uint i = 0; i < x; i++)
                 {
-                    for (int j = 0; j < y; j++)
+                    for (uint j = 0; j < y; j++)
                     {
                         Color a = oldImage.GetPixel(i, j);
                         Color b = newImageBmp.GetPixel(i, j);
@@ -78,12 +77,8 @@ namespace CMK
             return newImageBmp;
         }
 
-        private bool isColorEqual(Color a, Color b)
-        {
-            return
-                a.R == b.R &&
+        private bool isColorEqual(Color a, Color b) => a.R == b.R &&
                 a.G == b.G &&
                 a.B == b.B;
-        }
     }
 }

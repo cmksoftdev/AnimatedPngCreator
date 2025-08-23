@@ -1,7 +1,6 @@
-﻿using System;
+﻿using CMK.ExtendedBitmap;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
@@ -27,8 +26,8 @@ namespace CMK
 
         private long FrameCountPosition;
         private int ChunkSequenceNumber;
-        private readonly int x;
-        private readonly int y;
+        private readonly uint x;
+        private readonly uint y;
         #endregion
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace CMK
         /// <param name="OutStream">The <see cref="Stream"/> to output the Gif to.</param>
         /// <param name="DefaultFrameDelay">Default Delay between consecutive frames... FrameRate = 1000 / DefaultFrameDelay.</param>
         /// <param name="Repeat">No of times the Png should repeat... 0 to repeat indefinitely.</param>
-        public Creator(Stream OutStream, int x, int y, int DefaultFrameDelay = 500, int Repeat = 0)
+        public Creator(Stream OutStream, uint x, uint y, int DefaultFrameDelay = 500, int Repeat = 0)
         {
             if (OutStream == null)
                 throw new ArgumentNullException(nameof(OutStream));
@@ -60,10 +59,7 @@ namespace CMK
 
         #region Private methods
 
-        private void write_Signature()
-        {
-            write(SIGNATURE);
-        }
+        private void write_Signature() => write(SIGNATURE);
 
         private void write_IHDR(Stream png) // Image Header
         {
@@ -137,10 +133,7 @@ namespace CMK
             ChunkSequenceNumber++;
         }
 
-        private void write_IEND()
-        {
-            write(IEND);
-        }
+        private void write_IEND() => write(IEND);
 
         private void write_IDAT(Stream png)
         {
@@ -189,10 +182,7 @@ namespace CMK
 
 
 
-        private void write(byte[] data)
-        {
-            _writer.Write(data);
-        }
+        private void write(byte[] data) => _writer.Write(data);
 
         private void write_acTL()
         {
@@ -226,11 +216,11 @@ namespace CMK
         /// <param name="Image">The image to add</param>
         /// <param name="offsetX">X offset to render the image</param>
         /// <param name="offsetY">Y offset to render the image</param>
-        public void WriteFrame(Image image, short frameDelay, int offsetX = 0, int offsetY = 0)
+        public void WriteFrame(IExtendedBitmap image, short frameDelay, int offsetX = 0, int offsetY = 0)
         {
-            using (Stream png = new MemoryStream())
+            using (var png = new MemoryStream())
             {
-                image.Save(png, ImageFormat.Png);
+                image.Save(png);
                 if (FrameCount == 0)
                 {
                     write_Signature();
@@ -238,7 +228,7 @@ namespace CMK
                     write_tEXt_signature();
                     write_acTL_placeholder();
                 }
-                write_fcTL(image.Width, image.Height, offsetX, offsetY, frameDelay);
+                write_fcTL((int)image.Width, (int)image.Height, offsetX, offsetY, frameDelay);
                 if (FrameCount == 1)
                     write_IDAT(png);
                 else

@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Linq;
-using System.Drawing;
-using static CMK.AnimatedPng;
+using CMK.ExtendedBitmap;
+using CMK;
 
 namespace AnimatedPngCreator.Tests
 {
@@ -36,11 +36,11 @@ namespace AnimatedPngCreator.Tests
         {
             // Arrange
             var expectedBytes = File.ReadAllBytes("TestFiles\\expected.png");
-            var images = new List<Image>
+            var images = new List<IExtendedBitmap>
             {
-                Image.FromFile("TestFiles\\1.bmp"),
-                Image.FromFile("TestFiles\\2.bmp"),
-                Image.FromFile("TestFiles\\3.bmp")
+                BitmapFactory.FromFile("TestFiles\\1.bmp"),
+                BitmapFactory.FromFile("TestFiles\\2.bmp"),
+                BitmapFactory.FromFile("TestFiles\\3.bmp")
             };
 
             // Act
@@ -56,11 +56,11 @@ namespace AnimatedPngCreator.Tests
         {
             // Arrange
             var expectedBytes = File.ReadAllBytes("TestFiles\\expected.png");
-            var images = new List<Frame>
+            var images = new List<AnimatedPng.Frame>
             {
-                CMK.AnimatedPngCreator.Frame(Image.FromFile("TestFiles\\1.bmp"),1000),
-                CMK.AnimatedPngCreator.Frame(Image.FromFile("TestFiles\\2.bmp"),1000),
-                CMK.AnimatedPngCreator.Frame(Image.FromFile("TestFiles\\3.bmp"),1000)
+                CMK.AnimatedPngCreator.Frame(BitmapFactory.FromFile("TestFiles\\1.bmp"),1000),
+                CMK.AnimatedPngCreator.Frame(BitmapFactory.FromFile("TestFiles\\2.bmp"),1000),
+                CMK.AnimatedPngCreator.Frame(BitmapFactory.FromFile("TestFiles\\3.bmp"),1000)
             };
 
             // Act

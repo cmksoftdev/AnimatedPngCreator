@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMK
 {
-    internal class EngineBase
+    public class EngineBase
     {
         protected static readonly byte[] IEND = { 0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82 };
         protected static readonly byte[] SIGNATURE = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
@@ -63,19 +63,13 @@ namespace CMK
             return crc32.GetCRC32(chunk);
         }
 
-        public static byte[] skipLengthPropertyAndGetSwappedCrc(byte[] chunk)
-        {
-            return getSwappedCrc(chunk.Skip(4)
+        public static byte[] skipLengthPropertyAndGetSwappedCrc(byte[] chunk) => getSwappedCrc(chunk.Skip(4)
                 .Take(chunk.Length - 8)
                 .ToArray());
-        }
 
-        public static uint skipLengthPropertyAndGetCrc(byte[] chunk)
-        {
-            return getCrc(chunk.Skip(4)
+        public static uint skipLengthPropertyAndGetCrc(byte[] chunk) => getCrc(chunk.Skip(4)
                 .Take(chunk.Length - 8)
                 .ToArray());
-        }
 
         public static byte[] getSwappedArray(int i)
         {
@@ -123,15 +117,9 @@ namespace CMK
             return bytes;
         }
 
-        protected List<byte[]> find_IHDR(Stream png)
-        {
-            return find(png, "IHDR".ToCharArray());
-        }
+        protected List<byte[]> find_IHDR(Stream png) => find(png, "IHDR".ToCharArray());
 
-        protected List<byte[]> find_IDAT(Stream png)
-        {
-            return find(png, "IDAT".ToCharArray());
-        }
+        protected List<byte[]> find_IDAT(Stream png) => find(png, "IDAT".ToCharArray());
 
         protected List<byte[]> find(Stream png, char[] search)
         {

@@ -1,4 +1,5 @@
 ﻿using AnimatedPngCreator;
+using CMK.ExtendedBitmap;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,7 +18,7 @@ namespace CMK
         /// <param name="frameDelay">Frame delay for all images.</param>
         /// <param name="config">Configuration.</param>
         /// <param name="repeat">Count to repeat the animation. 0 means infinit.</param>
-        public static void Create(string outputFilePath, IEnumerable<Image> images, short frameDelay, int repeat = 0, Config config = null)
+        public static void Create(string outputFilePath, IEnumerable<IExtendedBitmap> images, short frameDelay, int repeat = 0, Config config = null)
         {
             var xMax = images.Max(x => x.Width);
             var yMax = images.Max(x => x.Height);
@@ -66,10 +67,10 @@ namespace CMK
         /// <param name="repeat">Count to repeat the animation. 0 means infinit.</param>
         public static void Create(string outputFilePath, IEnumerable<string> imagePaths, short frameDelay, int repeat = 0, Config config = null)
         {
-            var images = new List<Image>();
+            var images = new List<IExtendedBitmap>();
             foreach(var imagePath in imagePaths)
             {
-                images.Add(Image.FromFile(imagePath));
+                images.Add(BitmapFactory.FromFile(imagePath));
             }
             Create(outputFilePath, images, frameDelay);
         }
@@ -79,28 +80,22 @@ namespace CMK
         /// </summary>
         /// <param name="image">Image of this frame.</param>
         /// <param name="delay">Frame delay for this image.</param>
-        public static AnimatedPng.Frame Frame(Image image, short delay)
+        public static AnimatedPng.Frame Frame(IExtendedBitmap image, short delay) => new AnimatedPng.Frame
         {
-            return new AnimatedPng.Frame
-            {
-                Image = image,
-                Delay = delay
-            };
-        }
+            Image = image,
+            Delay = delay
+        };
 
         /// <summary>
         /// Creates an frame object.
         /// </summary>
         /// <param name="imageFilePath">File path for image.</param>
         /// <param name="delay">Frame delay for this image.</param>
-        public static AnimatedPng.Frame Frame(string imageFilePath, short delay)
+        public static AnimatedPng.Frame Frame(string imageFilePath, short delay) => new AnimatedPng.Frame
         {
-            return new AnimatedPng.Frame
-            {
-                Image = Image.FromFile(imageFilePath),
-                Delay = delay
-            };
-        }
+            Image = BitmapFactory.FromFile(imageFilePath),
+            Delay = delay
+        };
 
         public class Config
         {
@@ -113,9 +108,9 @@ namespace CMK
 
         private ImageChangeAnalyser changeAnalyser;
 
-        public AnimatedPngCreator(Stream stream, int x, int y, int defaultDelay = 500, int repeat = 0)
+        public AnimatedPngCreator(Stream stream, uint x, uint y, int defaultDelay = 500, int repeat = 0)
         {
-            creator = new Creator(stream,x,y,defaultDelay,repeat);
+            creator = new Creator(stream, x, y, defaultDelay, repeat);
             config = new Config { FilterUnchangedPixels = true };
             init();
         }
@@ -126,23 +121,20 @@ namespace CMK
                 changeAnalyser = new ImageChangeAnalyser();
         }
 
-        public AnimatedPngCreator(Stream stream, int x, int y, Config config, int defaultDelay = 500, int repeat = 0)
+        public AnimatedPngCreator(Stream stream, uint x, uint y, Config config, int defaultDelay = 500, int repeat = 0)
         {
             creator = new Creator(stream, x, y, defaultDelay, repeat);
             this.config = config ?? new Config { FilterUnchangedPixels = true };
             init();
         }
 
-        public void WriteFrame(IImage image, short frameDelay, int offsetX = 0, int offsetY = 0)
+        public void WriteFrame(IExtendedBitmap image, short frameDelay, int offsetX = 0, int offsetY = 0)
         {
             var img = config.FilterUnchangedPixels == true ?
                 changeAnalyser.BlackoutImage(image, out bool b) : image;
             creator.WriteFrame(img, frameDelay, offsetX, offsetY);
         }
 
-        public void Dispose()
-        {
-            creator.Dispose();
-        }
+        public void Dispose() => creator.Dispose();
     }
 }

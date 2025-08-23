@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AnimatedPngCreator.Tests</RootNamespace>
     <AssemblyName>AnimatedPngCreator.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -19,6 +19,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,7 +47,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimatedPngCreatorTests.cs" />
@@ -58,12 +58,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AnimatedPngCreator\AnimatedPngCreator.csproj">
-      <Project>{ecf99103-3155-447b-93b7-cd7f360f45a4}</Project>
-      <Name>AnimatedPngCreator</Name>
+    <ProjectReference Include="..\AnimatedPngCreatorBase\AnimatedPngCreatorBase.csproj">
+      <Project>{e96e109c-b75f-4250-ad2e-00c169fb7921}</Project>
+      <Name>AnimatedPngCreatorBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtendedBitmap\ExtendedBitmap.csproj">
+      <Project>{d55d0c19-3744-4c18-a6f5-93a5b6d7917c}</Project>
+      <Name>ExtendedBitmap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemDrawingBitmapFactoryFramework\SystemDrawingBitmapFactoryFramework.csproj">
+      <Project>{843e25c3-23dc-4970-9709-648b967e84d8}</Project>
+      <Name>SystemDrawingBitmapFactoryFramework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="TestFiles\1.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
