@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemDrawingBitmapFactoryF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimatedPngCreatorBase", "AnimatedPngCreatorBase\AnimatedPngCreatorBase.csproj", "{E96E109C-B75F-4250-AD2E-00C169FB7921}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemDrawingBitmapFactoryCore", "SystemDrawingBitmapFactoryCore\SystemDrawingBitmapFactoryCore.csproj", "{AA7805FA-5705-7502-547B-5EEBD4DE417B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimatedPngCreator.ConsoleCore", "AnimatedPngCreator.ConsoleCore\AnimatedPngCreator.ConsoleCore.csproj", "{961A511C-36EE-41AC-A6B5-3641C8858D64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiaBitmapFactory", "SkiaBitmapFactory\SkiaBitmapFactory.csproj", "{68C1292E-5A7B-4B67-B34F-21358AF24E95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{E96E109C-B75F-4250-AD2E-00C169FB7921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E96E109C-B75F-4250-AD2E-00C169FB7921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E96E109C-B75F-4250-AD2E-00C169FB7921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7805FA-5705-7502-547B-5EEBD4DE417B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7805FA-5705-7502-547B-5EEBD4DE417B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7805FA-5705-7502-547B-5EEBD4DE417B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7805FA-5705-7502-547B-5EEBD4DE417B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{961A511C-36EE-41AC-A6B5-3641C8858D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961A511C-36EE-41AC-A6B5-3641C8858D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961A511C-36EE-41AC-A6B5-3641C8858D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961A511C-36EE-41AC-A6B5-3641C8858D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68C1292E-5A7B-4B67-B34F-21358AF24E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68C1292E-5A7B-4B67-B34F-21358AF24E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68C1292E-5A7B-4B67-B34F-21358AF24E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68C1292E-5A7B-4B67-B34F-21358AF24E95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

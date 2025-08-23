@@ -23,7 +23,7 @@ namespace CMK
                     {
                         Color a = oldImage.GetPixel(i + s, j + s);
                         Color b = newImageBmp.GetPixel(i + s, j + s);
-                        if (isColorEqual(a, b))
+                        if (a == b)
                         {
                             set_transparent(newImageBmp, i, j);
                         }
@@ -64,7 +64,7 @@ namespace CMK
                     {
                         Color a = oldImage.GetPixel(i, j);
                         Color b = newImageBmp.GetPixel(i, j);
-                        if (isColorEqual(a, b))
+                        if (a == b)
                         {
                             changeCount++;
                             newImageBmp.SetPixel(i, j, Color.Transparent);
@@ -76,9 +76,5 @@ namespace CMK
             equal = changeCount == pixelCount;
             return newImageBmp;
         }
-
-        private bool isColorEqual(Color a, Color b) => a.R == b.R &&
-                a.G == b.G &&
-                a.B == b.B;
     }
 }
