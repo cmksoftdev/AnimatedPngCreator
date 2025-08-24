@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AnimatedPngCreatorBase\AnimatedPngCreatorBase.csproj" />
     <ProjectReference Include="..\ExtendedBitmap\ExtendedBitmap.csproj" />
-    <ProjectReference Include="..\SkiaBitmapFactory\SkiaBitmapFactory.csproj" />
+    <ProjectReference Include="..\SkiaBitmapFactory\AnimatedPngCreator.SkiaSharp.csproj" />
   </ItemGroup>
 
 </Project>

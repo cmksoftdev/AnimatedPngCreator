@@ -1,8 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
   <PropertyGroup>
-    <TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
-    <Title>AnimatedPngCreator.System.Drawing</Title>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>AnimatedPngCreator.SkiaSharp</Title>
     <Version>2.0.3</Version>
     <Company>CMK Softdev</Company>
     <PackageProjectUrl>https://github.com/cmksoftdev/AnimatedPngCreator</PackageProjectUrl>
@@ -25,7 +27,7 @@
     <Authors>C. Kirchner</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>
-     AnimatedPngCreator.System.Drawing is the module to use System.Drawing for loading and writing the images
+      AnimatedPngCreator.SkiaSharp is the module to use SkiaSharp for loading and writing the images
 
       AnimatedPngCreator
 
@@ -44,19 +46,11 @@
     <Copyright>CMK Softdev 2025</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup> 
-  
+  </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\SystemDrawingBitmapFactoryFramework\bin\$(Configuration)\SystemDrawingBitmapFactoryFramework.dll"
-        Pack="true"
-        PackagePath="lib\net48" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Include="..\SystemDrawingBitmapFactoryCore\bin\$(Configuration)\net8.0-windows\SystemDrawingBitmapFactoryCore.dll"
-          Pack="true"
-          PackagePath="lib\net8.0" />
+    <PackageReference Include="AnimatedPngCreator" Version="2.0.*" />
+    <PackageReference Include="SkiaSharp" Version="3.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,8 +60,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AnimatedPngCreator" Version="2.0.*" />
-  </ItemGroup>
-  
 </Project>

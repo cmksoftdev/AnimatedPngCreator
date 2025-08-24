@@ -29,7 +29,7 @@ namespace CMK.ExtendedBitmap
 
         static BitmapFactory()
         {
-            var assemblies = new[] { "SystemDrawingBitmapFactoryFramework.dll", "SystemDrawingBitmapFactoryCore.dll", "SkiaBitmapFactory.dll" };
+            var assemblies = new[] { "SystemDrawingBitmapFactoryFramework.dll", "SystemDrawingBitmapFactoryCore.dll", "AnimatedPngCreator.SkiaSharp.dll" };
             var types = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
                 .GetFiles()
                 .Where(f => assemblies.Contains(f.Name))

@@ -2,13 +2,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Title>AnimatedPngCreator</Title>
-    <Version>2.0.0</Version>
+    <Version>2.0.3</Version>
     <Company>CMK Softdev</Company>
     <PackageProjectUrl>https://github.com/cmksoftdev/AnimatedPngCreator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cmksoftdev/AnimatedPngCreator</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>apng;png;animated png creator</PackageTags>
-    <PackageReleaseNotes>Version 2.0.0 – Release Notes
+    <PackageReleaseNotes>Version 2.0.3 – Release Notes
 
 New Modular Structure
 
@@ -35,6 +35,8 @@ Choose your preferred image backend without affecting core logic
 
 Compatible with multiple .NET frameworks through multi-targeting</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Copyright>CMK Softdev 2025</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\README.md">
@@ -44,8 +46,13 @@ Compatible with multiple .NET frameworks through multi-targeting</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AnimatedPngCreatorBase\AnimatedPngCreatorBase.csproj" />
-    <ProjectReference Include="..\ExtendedBitmap\ExtendedBitmap.csproj" />
+    <None Include="..\AnimatedPngCreatorBase\bin\$(Configuration)\netstandard2.0\AnimatedPngCreatorBase.dll"
+        Pack="true"
+        PackagePath="lib\netstandard2.0" />
+
+    <None Include="..\ExtendedBitmap\bin\$(Configuration)\netstandard2.0\ExtendedBitmap.dll"
+          Pack="true"
+          PackagePath="lib\netstandard2.0" />
   </ItemGroup>
 
 </Project>

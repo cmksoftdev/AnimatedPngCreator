@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemDrawingBitmapFactoryC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimatedPngCreator.ConsoleCore", "AnimatedPngCreator.ConsoleCore\AnimatedPngCreator.ConsoleCore.csproj", "{961A511C-36EE-41AC-A6B5-3641C8858D64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiaBitmapFactory", "SkiaBitmapFactory\SkiaBitmapFactory.csproj", "{68C1292E-5A7B-4B67-B34F-21358AF24E95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimatedPngCreator.SkiaSharp", "SkiaBitmapFactory\AnimatedPngCreator.SkiaSharp.csproj", "{68C1292E-5A7B-4B67-B34F-21358AF24E95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimatedPngCreator", "AnimatedPngCreator\AnimatedPngCreator.csproj", "{1812D5D9-7E25-4DC4-B0CD-7A518D0A89A8}"
 EndProject
