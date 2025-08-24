@@ -3,7 +3,9 @@ Creates animated PNG out ouf a sequence of Images.
 
 Please use the newest version on NuGet.
 <br>
-[Get the package on NuGet](https://www.nuget.org/packages/AnimatedPngCreator/)
+[Get the package on NuGet (System.Drawing)](https://www.nuget.org/packages/AnimatedPngCreator.System.Drawing/)
+or
+[Get the package on NuGet (SkiaSharp)](https://www.nuget.org/packages/AnimatedPngCreator.SkiaSharp/)
 
 Dispose the creator to end the creating process. On disposing the count of images will be written to the header.
 
