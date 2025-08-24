@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>AnimatedPngCreator</Title>
+    <Version>2.0.0</Version>
+    <Company>CMK Softdev</Company>
+    <PackageProjectUrl>https://github.com/cmksoftdev/AnimatedPngCreator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cmksoftdev/AnimatedPngCreator</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>apng;png;animated png creator</PackageTags>
+    <PackageReleaseNotes>Version 2.0.0 – Release Notes
+
+New Modular Structure
+
+The package has been restructured into a modular format.
+
+The core functionality is now separated from the platform-specific wrappers.
+
+Users can choose which wrapper to include (e.g., System.Drawing or Skia) depending on their environment.
+
+Existing projects can adopt the new structure with minimal changes.</PackageReleaseNotes>
+    <Authors>C. Kirchner</Authors>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>AnimatedPngCreator
+
+Create animated PNGs (APNGs) easily and efficiently in .NET projects. The package provides a modular structure that separates core functionality from platform-specific wrappers, allowing developers to choose the appropriate image backend (e.g., System.Drawing or Skia) for their environment.
+
+Key Features:
+
+Generate animated PNGs from a sequence of images
+
+Modular design with separate core and wrapper packages
+
+Choose your preferred image backend without affecting core logic
+
+Compatible with multiple .NET frameworks through multi-targeting</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnimatedPngCreatorBase\AnimatedPngCreatorBase.csproj" />
+    <ProjectReference Include="..\ExtendedBitmap\ExtendedBitmap.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -7,6 +7,8 @@ Please use the newest version on NuGet.
 
 Dispose the creator to end the creating process. On disposing the count of images will be written to the header.
 
+24.08.2025  v2.0.0 New project stucture: AnimatedPngCreator and AnimatedPngCreator.System.Drawing or AnimatedPngCreator.SkiaSharp is needed
+<br>
 12.10.2018  Bug fixed, tests added, new static methods added - v1.0.3 merged to master
 <br>
 29.8.2018  Bug fixed, test added, v1.0.2 deployed on NuGet
@@ -16,6 +18,13 @@ Dispose the creator to end the creating process. On disposing the count of image
 V1.0.3 makes it possible to use the static Create method. 
 
 The third parameter is the time to show the frame, in milli seconds.
+
+
+### Breaking Changes:
+
+v2.0.0 Use BitmapFactory.FromFile instead of Image.FromFile and install AnimatedPngCreator.System.Drawing or AnimatedPngCreator.SkiaSharp
+
+
 ```csharp
 // Example 1:
 var filePaths = new List<string>
@@ -27,18 +36,18 @@ CMK.AnimatedPngCreator.Create("out.png", filePaths, 1000);
 // Example 2:
 var images = new List<Image>
 {
-    Image.FromFile("1.bmp"),
-    Image.FromFile("2.bmp"),
-    Image.FromFile("3.bmp")
+    BitmapFactory.FromFile("1.bmp"),
+    BitmapFactory.FromFile("2.bmp"),
+    BitmapFactory.FromFile("3.bmp")
 };
 CMK.AnimatedPngCreator.Create("out.png", images, 1000);
 
 // Example 3:
 var frames = new List<Frame>
 {
-    CMK.AnimatedPngCreator.Frame(Image.FromFile("1.bmp"), 1000),
-    CMK.AnimatedPngCreator.Frame(Image.FromFile("2.bmp"), 1000),
-    CMK.AnimatedPngCreator.Frame(Image.FromFile("3.bmp"), 1000)
+    CMK.AnimatedPngCreator.Frame(BitmapFactory.FromFile("1.bmp"), 1000),
+    CMK.AnimatedPngCreator.Frame(BitmapFactory.FromFile("2.bmp"), 1000),
+    CMK.AnimatedPngCreator.Frame(BitmapFactory.FromFile("3.bmp"), 1000)
 };
 CMK.AnimatedPngCreator.Create("out.png", frames);
 ```
@@ -67,9 +76,9 @@ namespace ApngTest
     {
         static void Main(string[] args)
         {
-            Image image1 = Image.FromFile("filename1.bmp");
-            Image image2 = Image.FromFile("filename2.jpg");
-            Image image3 = Image.FromFile("filename3.png");
+            Image image1 = BitmapFactory.FromFile("filename1.bmp");
+            Image image2 = BitmapFactory.FromFile("filename2.jpg");
+            Image image3 = BitmapFactory.FromFile("filename3.png");
 
             short frameDelay = 1000 / 5; //5 frames per second
             using (FileStream outputFile = File.Create("animated.png"))
@@ -100,9 +109,9 @@ namespace ApngTest
         {
             List<Image> images = new List<Image>
             {
-                Image.FromFile("filename1.bmp"),
-                Image.FromFile("filename2.jpg"),
-                Image.FromFile("filename3.png")
+                BitmapFactory.FromFile("filename1.bmp"),
+                BitmapFactory.FromFile("filename2.jpg"),
+                BitmapFactory.FromFile("filename3.png")
             };
 
             short frameDelay = 1000 / 5; //5 frames per second
